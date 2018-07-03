@@ -1,0 +1,13 @@
+<p>
+  dicer works!
+</p>
+  <label  for="roll">Wurf</label>
+  <input id="roll" type="text" [(ngModel)]="rollString">
+  <input type="submit" value="roll!" (submit)="roll()" (click)="roll()">
+<div *ngIf="rollResult">
+  {{rollResult.details}}
+</div>
+<div *ngIf="results.length">
+  <h2>Log:</h2>
+  <p  *ngFor="let res of results"> {{ res }}</p>
+</div>
