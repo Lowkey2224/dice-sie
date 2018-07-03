@@ -9,9 +9,9 @@ import {DiceResult} from '../shared/model/dice-result';
 })
 export class DicerComponent implements OnInit {
 
-  private rollResult: DiceResult;
-  private results: string[];
-  private rollString: string;
+  rollResult: DiceResult;
+  results: string[];
+  rollString: string;
 
   constructor(
     private rolz: RolzApiService
