@@ -10,7 +10,7 @@ import {DiceResult} from '../shared/model/dice-result';
 export class DicerComponent implements OnInit {
 
   rollResult: DiceResult;
-  results: string[];
+  results: DiceResult[];
   rollString: string;
 
   constructor(
@@ -24,13 +24,12 @@ export class DicerComponent implements OnInit {
 
   roll() {
     const strings = this.rollString.split('+');
-    console.log(this.rollString);
-    console.log(strings);
+    const mod = strings.length === 2 ? +strings[1] : 0;
     const dice = strings[0].split('d');
     console.log(dice);
-    this.rolz.roll(+dice[0], +dice[1], +strings[1]).subscribe(res => {
+    this.rolz.roll(+dice[0], +dice[1], mod).subscribe(res => {
       this.rollResult = res;
-      this.results.push(this.rollResult.details);
+      this.results.push(this.rollResult);
     });
   }
 

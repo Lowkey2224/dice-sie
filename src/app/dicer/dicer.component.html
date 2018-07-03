@@ -5,9 +5,9 @@
   <input id="roll" type="text" [(ngModel)]="rollString">
   <input type="submit" value="roll!" (submit)="roll()" (click)="roll()">
 <div *ngIf="rollResult">
-  {{rollResult.details}}
+  {{rollResult.result + rollResult.modificator }} = {{ rollResult.details }} + {{ rollResult.modificator }}
 </div>
 <div *ngIf="results.length">
   <h2>Log:</h2>
-  <p  *ngFor="let res of results"> {{ res }}</p>
+  <p  *ngFor="let res of results">{{res.result + res.modificator }} = {{ res.details }} + {{ res.modificator }}</p>
 </div>

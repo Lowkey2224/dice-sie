@@ -4,4 +4,5 @@ export class DiceResult {
   code: string;
   illustration: string;
   timestamp: number;
+  modificator?: number;
 }
