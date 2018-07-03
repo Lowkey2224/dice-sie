@@ -1,9 +1,10 @@
-<p>
-  dicer works!
-</p>
-  <label  for="roll">Wurf</label>
-  <input id="roll" type="text" [(ngModel)]="rollString">
-  <input type="submit" value="roll!" (submit)="roll()" (click)="roll()">
+<form (ngSubmit)="roll()" #diceForm="ngForm">
+  <div class="form-group">
+    <label for="roll">Wurf</label>
+    <input id="roll" type="text" [(ngModel)]="rollString" name="roll">
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!diceForm.form.valid">Submit</button>
+</form>
 <div *ngIf="rollResult">
   {{rollResult.result + rollResult.modificator }} = {{ rollResult.details }} + {{ rollResult.modificator }}
 </div>
