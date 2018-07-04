@@ -12,8 +12,8 @@ export class RolzApiService {
   constructor(private http: HttpClient) {
   }
 
-  public roll(noDice: number, typeOfDice: number, modificator?: number): Observable<DiceResult> {
-    const param = `${noDice}d${typeOfDice}`;
+  public roll(rollStatement: number, modificator?: number): Observable<DiceResult> {
+    const param = `${rollStatement}`;
     return this.http.get<DiceResult>(`https://rolz.org/api/?${param}.json`).pipe(
       map((result: DiceResult) => {
         result.modificator = modificator;

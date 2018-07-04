@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {DicerComponent} from './dicer/dicer.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RolzApiService} from './shared/service/rolz-api.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DiceResultDisplayComponent} from './shared/component/dice-result-display/dice-result-display.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -21,7 +21,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FormsModule,
     MDBBootstrapModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [
     RolzApiService,

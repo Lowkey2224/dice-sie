@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RolzApiService} from '../shared/service/rolz-api.service';
 import {DiceResult} from '../shared/model/dice-result';
 import {faDice} from '@fortawesome/free-solid-svg-icons/faDice';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dicer',
@@ -12,24 +13,28 @@ export class DicerComponent implements OnInit {
 
   rollResult: DiceResult;
   results: DiceResult[];
-  rollString: string;
   faDice = faDice;
+  rollForm: FormGroup;
 
   constructor(
-    private rolz: RolzApiService
+    private rolz: RolzApiService,
+    private fb: FormBuilder
   ) {
+    const rollPattern = /^\d+d\d+(\+\d+)?$/;
     this.results = [];
+    this.rollForm = fb.group({
+      roll: new FormControl('', [Validators.required, Validators.pattern(rollPattern)]),
+    });
   }
 
   ngOnInit() {
   }
 
   roll() {
-    const strings = this.rollString.split('+');
+
+    const strings = this.rollForm.get('roll').value.split('+');
     const mod = strings.length === 2 ? +strings[1] : 0;
-    const dice = strings[0].split('d');
-    console.log(dice);
-    this.rolz.roll(+dice[0], +dice[1], mod).subscribe(res => {
+    this.rolz.roll(strings[0], mod).subscribe(res => {
       this.rollResult = res;
       this.results.push(this.rollResult);
     });
