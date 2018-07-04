@@ -1,14 +1,31 @@
-<form (ngSubmit)="roll()" #diceForm="ngForm">
-  <div class="form-group">
-    <label for="roll">Wurf</label>
-    <input id="roll" type="text" [(ngModel)]="rollString" name="roll">
-  </div>
-  <button type="submit" class="btn btn-success" [disabled]="!diceForm.form.valid">Submit</button>
-</form>
-<div *ngIf="rollResult">
-  {{rollResult.result + rollResult.modificator }} = {{ rollResult.details }} + {{ rollResult.modificator }}
+<div class="row">
+  <form (ngSubmit)="roll()" #diceForm="ngForm">
+    <div class="col">
+      <div class="md-form">
+        <i class="prefix">
+          <fa-icon [icon]="faDice"></fa-icon>
+        </i>
+        <input mdbInputDirective id="roll" type="text" [(ngModel)]="rollString" name="roll">
+        <label for="roll">Wurf</label>
+      </div>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success" [disabled]="!diceForm.form.valid">Submit</button>
+    </div>
+  </form>
 </div>
-<div *ngIf="results.length">
-  <h2>Log:</h2>
-  <p  *ngFor="let res of results">{{res.result + res.modificator }} = {{ res.details }} + {{ res.modificator }}</p>
+<div class="row" *ngIf="rollResult">
+  <div class="col">
+    <app-dice-result-display [result]="rollResult"></app-dice-result-display>
+  </div>
+</div>
+<div class="row" *ngIf="results.length">
+  <div class="col">
+    <p class="h2-responsive">Log:</p>
+    <ul *ngFor="let res of results.slice().reverse()">
+      <li>
+        <app-dice-result-display [result]="res"></app-dice-result-display>
+      </li>
+    </ul>
+  </div>
 </div>

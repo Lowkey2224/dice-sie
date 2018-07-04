@@ -1,17 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {RolzApiService} from '../shared/service/rolz-api.service';
 import {DiceResult} from '../shared/model/dice-result';
+import {faDice} from '@fortawesome/free-solid-svg-icons/faDice';
 
 @Component({
   selector: 'app-dicer',
   templateUrl: './dicer.component.html',
-  styleUrls: ['./dicer.component.css']
+  styleUrls: ['./dicer.component.scss']
 })
 export class DicerComponent implements OnInit {
 
   rollResult: DiceResult;
   results: DiceResult[];
   rollString: string;
+  faDice = faDice;
 
   constructor(
     private rolz: RolzApiService

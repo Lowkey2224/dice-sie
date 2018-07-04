@@ -1,31 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { DicerComponent } from './dicer/dicer.component';
+import {AppComponent} from './app.component';
+import {DicerComponent} from './dicer/dicer.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RolzApiService} from './shared/service/rolz-api.service';
 import {FormsModule} from '@angular/forms';
+import {DiceResultDisplayComponent} from './shared/component/dice-result-display/dice-result-display.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DicerComponent
+    DicerComponent,
+    DiceResultDisplayComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-// and returns simulated server responses.
-// Remove it when a real server is ready to receive requests.
-//    HttpClientInMemoryWebApiModule.forRoot(
-//      InMemoryDataService, {dataEncapsulation: false}
-//    )
+    MDBBootstrapModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     RolzApiService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
+
 })
-export class AppModule { }
+export class AppModule {
+}

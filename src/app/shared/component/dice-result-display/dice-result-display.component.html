@@ -1,0 +1,5 @@
+<p>{{result.result + result.modificator }} =
+  <fa-icon *ngFor="let roll of diceRolls()" [icon]="getIcon(roll)" size="2x"></fa-icon>
+  + {{ result.modificator }}
+</p>
+
