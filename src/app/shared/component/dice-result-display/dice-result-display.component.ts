@@ -10,6 +10,7 @@ import {faDiceFive, faDiceFour, faDiceOne, faDiceSix, faDiceThree, faDiceTwo} fr
 export class DiceResultDisplayComponent implements OnInit {
 
   @Input() result: DiceResult;
+
   constructor() {
   }
 
@@ -17,13 +18,7 @@ export class DiceResultDisplayComponent implements OnInit {
   }
 
   diceRolls(): string[] {
-    const noOfDice = this.result.input.match(/(\d+)+d\d+/)[1];
-    console.log(noOfDice);
-    return this.result.details.match(/\d+/g).slice(0, +noOfDice);
-  }
-
-  typeOfDice(): number {
-    return +this.result.input.match(/(\d+)+d\d+/)[1];
+    return this.result.details.match(/\d+/g).slice(0, this.result.getNumberOfDice());
   }
 
   getIcon(number: string) {
@@ -43,5 +38,20 @@ export class DiceResultDisplayComponent implements OnInit {
     }
   }
 
+  getTypeOfDice(): number {
+    return this.result.getTypeOfDice();
+  }
+
+  getBadgeClass(number: string): string {
+    const target = this.result.getTarget();
+    if (target === 0) {
+      return 'badge-info';
+    }
+    if (+number >= target) {
+      return 'badge-success';
+    } else {
+      return 'badge-error';
+    }
+  }
 
 }

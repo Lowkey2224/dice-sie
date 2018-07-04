@@ -1,9 +1,9 @@
 <div>{{result.result + result.modificator }} =
-  <ng-container *ngIf="typeOfDice() === 6">
+  <ng-container *ngIf="getTypeOfDice() === 6">
   <fa-icon *ngFor="let roll of diceRolls()" [icon]="getIcon(roll)" size="2x"></fa-icon>
   </ng-container>
-  <ng-container *ngIf="typeOfDice() !== 6">
-    <code *ngFor="let roll of diceRolls()" style="padding-left: 3px; padding-right: 3px;">{{ roll }} </code>
+  <ng-container *ngIf="getTypeOfDice() !== 6">
+    <span *ngFor="let roll of diceRolls()" class="badge {{ getBadgeClass(roll)}}">{{ roll }} </span>
   </ng-container>
   <span *ngIf="result.modificator > 0">+ {{ result.modificator }}</span><br/>
   Details: <code>{{ result.details }}</code>
