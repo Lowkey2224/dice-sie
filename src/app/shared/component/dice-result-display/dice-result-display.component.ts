@@ -17,13 +17,13 @@ export class DiceResultDisplayComponent implements OnInit {
   }
 
   diceRolls(): string[] {
-    const noOfDice = this.result.input.match(/(\d)+d\d+/)[1];
+    const noOfDice = this.result.input.match(/(\d+)+d\d+/)[1];
     console.log(noOfDice);
-    return this.result.details.match(/\d/g).slice(0, +noOfDice);
+    return this.result.details.match(/\d+/g).slice(0, +noOfDice);
   }
 
   typeOfDice(): number {
-    return +this.result.input.match(/(\d)+d\d+/)[1];
+    return +this.result.input.match(/(\d+)+d\d+/)[1];
   }
 
   getIcon(number: string) {
