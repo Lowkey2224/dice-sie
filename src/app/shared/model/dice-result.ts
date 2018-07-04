@@ -6,17 +6,17 @@ export class DiceResult {
   timestamp: number;
   modificator?: number;
 
-  public getNumberOfDice(): number {
-    return +this.input.match(/(\d+)+d\d+/)[1];
+  public static getNumberOfDice(result: DiceResult): number {
+    return +result.input.match(/(\d+)d\d+/)[1];
   }
 
-  public getTypeOfDice(): number {
-    return +this.input.match(/(\d+)+d\d+/)[1];
+  public static getTypeOfDice(result: DiceResult): number {
+    return +result.input.match(/\d+d(\d)+/)[1];
   }
 
-  public getTarget(): number {
-    const match = this.input.match(/(\d+)+d\d+[erfERF](\d+)/);
-    if (match.length === 2) {
+  public static getTarget(result: DiceResult): number {
+    const match = result.input.match(/\d+d\d+[erfERF](\d+)/);
+    if (match && match.length === 2) {
       return +match[1];
     } else {
       return 0;

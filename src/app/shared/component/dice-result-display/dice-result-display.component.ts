@@ -18,7 +18,7 @@ export class DiceResultDisplayComponent implements OnInit {
   }
 
   diceRolls(): string[] {
-    return this.result.details.match(/\d+/g).slice(0, this.result.getNumberOfDice());
+    return this.result.details.match(/\d+/g).slice(0, DiceResult.getNumberOfDice(this.result));
   }
 
   getIcon(number: string) {
@@ -39,18 +39,18 @@ export class DiceResultDisplayComponent implements OnInit {
   }
 
   getTypeOfDice(): number {
-    return this.result.getTypeOfDice();
+    return DiceResult.getTarget(this.result);
   }
 
   getBadgeClass(number: string): string {
-    const target = this.result.getTarget();
+    const target = DiceResult.getTarget(this.result);
     if (target === 0) {
       return 'badge-info';
     }
     if (+number >= target) {
       return 'badge-success';
     } else {
-      return 'badge-error';
+      return 'badge-warning';
     }
   }
 
