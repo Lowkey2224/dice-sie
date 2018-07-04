@@ -20,7 +20,7 @@ export class DicerComponent implements OnInit {
     private rolz: RolzApiService,
     private fb: FormBuilder
   ) {
-    const rollPattern = /^\d+d\d+(\+\d+)?$/;
+    const rollPattern = /^\d+d\d+(([ERFerf]\d+)|(\+\d+))?$/;
     this.results = [];
     this.rollForm = fb.group({
       roll: new FormControl('', [Validators.required, Validators.pattern(rollPattern)]),
